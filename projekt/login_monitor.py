@@ -3,10 +3,21 @@ import os
 import sys
 import argparse
 import platform
+import logging
 from datetime import datetime
 
 # Current version
 VERSION = "1.0.0"
+
+LOG_FILE = "system_monitor.log"
+
+def setup_logging():
+    logging.basicConfig(
+        filename=LOG_FILE,
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
 
 #Checks if the current OS is linux based
 def check_os():
@@ -24,10 +35,13 @@ def parse_arguments():
 #If no command is given, gives user, time and startup message 
 def main():
 
+    setup_logging()
     check_os()
     args = parse_arguments()
 
     user = os.getenv('USER') or "Unknown"
+
+    logging.info(f"Script started by {user}")
 
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"\n--- Login Monitor Started ---")
@@ -35,6 +49,8 @@ def main():
     print(f"Time: {current_time}")
     print(f"OS: {platform.system()} {platform.release()}")
     print("--------------------------------")
+
+    logging.info("System checks passed.")
 
 if __name__ == "__main__":
 #Failsafe if user does CTRL + C
