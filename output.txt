@@ -1,0 +1,82 @@
+Välkommen till RECON script för att kontrollera en Linux-miljö
+
+=== SYSTEMINFO ===
+Linux kali 6.18.3+kali+1-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.18.3-1kali2 (2026-01-14) x86_64 GNU/Linux
+
+=== AKTUELL ANVÄNDARE ===
+root
+
+=== ANVÄNDARE MED SHELL ===
+root:x:0:0:root:/root:/usr/bin/zsh
+postgres:x:117:120:PostgreSQL administrator:/var/lib/postgresql:/bin/bash
+adam:x:1000:1000:Adam,,,:/home/adam:/usr/bin/zsh
+
+=== NÄTVERK ===
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host noprefixroute 
+    inet 192.168.0.67/24 brd 192.168.0.255 scope global dynamic noprefixroute eth0
+    inet6 fe80::a00:27ff:febd:245/64 scope link noprefixroute 
+
+=== LÄGG TILL FLERA TESTER  ===
+
+=== HÅRDVARA ===
+Model name:                              AMD Ryzen 7 9700X 8-Core Processor
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       834Mi       1.9Gi       7.5Mi       1.3Gi       3.0Gi
+Swap:          1.6Gi          0B       1.6Gi
+
+=== DISKUTRYMME ===
+Filesystem      Size  Used Avail Use% Mounted on
+udev            1.9G     0  1.9G   0% /dev
+tmpfs           392M  976K  392M   1% /run
+/dev/sda1        28G   17G   11G  62% /
+tmpfs           2.0G  4.0K  2.0G   1% /dev/shm
+none            1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           2.0G  372K  2.0G   1% /tmp
+none            1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs           392M  104K  392M   1% /run/user/1000
+
+=== PUBLIK IP ===
+{
+    "ip": "87.227.104.140",
+    "network": "87.227.104.0/24",
+    "version": "IPv4",
+    "city": "Vara",
+    "region": "Vaestra Goetaland",
+    "region_code": "O",
+    "country": "SE",
+    "country_name": "Sweden",
+    "country_code": "SE",
+    "country_code_iso3": "SWE",
+    "country_capital": "Stockholm",
+    "country_tld": ".se",
+    "continent_code": "EU",
+    "in_eu": true,
+    "postal": "535 23",
+    "latitude": 58.3,
+    "longitude": 13.1833,
+    "timezone": "Europe/Stockholm",
+    "utc_offset": "+0100",
+    "country_calling_code": "+46",
+    "currency": "SEK",
+    "currency_name": "Krona",
+    "languages": "sv-SE,se,sma,fi-SE",
+    "country_area": 449964.0,
+    "country_population": 10183175,
+    "asn": "AS1257",
+    "org": "Tele2 SWIPnet"
+}
+=== DRIFTTID ===
+ 19:07:40 up  1:41,  1 user,  load average: 0.06, 0.08, 0.06
+
+=== AKTIVA PROCESSER ===
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.3  24856 15256 ?        Ss   17:25   0:01 /sbin/init splash
+root           2  0.0  0.0      0     0 ?        S    17:25   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        S    17:25   0:00 [pool_workqueue_release]
+root           4  0.0  0.0      0     0 ?        I<   17:25   0:00 [kworker/R-rcu_gp]
+root           5  0.0  0.0      0     0 ?        I<   17:25   0:00 [kworker/R-sync_wq]
+root           6  0.0  0.0      0     0 ?        I<   17:25   0:00 [kworker/R-kvfree_rcu_reclaim]
+root           7  0.0  0.0      0     0 ?        I<   17:25   0:00 [kworker/R-slub_flushwq]
+root           8  0.0  0.0      0     0 ?        I<   17:25   0:00 [kworker/R-netns]
+root          10  0.0  0.0      0     0 ?        I<   17:25   0:00 [kworker/0:0H-events_highpri]
