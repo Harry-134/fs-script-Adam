@@ -85,6 +85,23 @@ def parse_arguments():
     parser.add_argument("-v", "--version", action="version", version=f"LoginMonitor v{VERSION}")
     return parser.parse_args()
 
+def check_priviledges():
+
+    try:
+        is_root = os.getuid() == 0
+
+        if is_root:
+         msg = "Running with ROOT priviledges."
+         print(f"Warning: {msg}")
+         logging.warning(msg)
+        else:
+         msg = "Running as a standard user."
+         print(f"Priviledge: {msg}")
+         logging.info(msg)
+
+    except AttributeError:
+        pass
+
 #If no command is given, gives user, time and startup message 
 def main():
 
@@ -105,6 +122,8 @@ def main():
     get_network_info()
     #Calls the system info function for cpu/storage info
     get_system_info()
+    check_priviledges()
+
     print("--------------------------------")
 
     logging.info("System checks passed.")
