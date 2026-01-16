@@ -6,6 +6,7 @@ import platform
 import logging
 import socket
 import requests
+import shutil
 from datetime import datetime
 
 # Current version
@@ -56,6 +57,28 @@ def get_network_info():
         print(f"Offline or timeout: {e}")
         logging.warning(f"Could not fetch Public IP {e}")
 
+#Gets storage and cpu load info
+def get_system_info():
+    print ("\n--- System info ---")
+    try:
+        total, used, free = shutil.disk_usage("/")
+        #2**30 turns bytes to GB
+        freegb = free // (2**30)
+        totalgb = total // (2**30)
+
+        print(f"Disk space: {freegb} GB free / {totalgb} GB total")
+        logging.info(f"Disk storage: {freegb}GB free of {totalgb}GB")
+    except Exception as e:
+        print(f"Disk check failed: {e}")
+        logging.error(f"Disk check error: {e}")
+
+    try:
+        load1, load5, load15 = os.getloadavg()
+        print(f"CPU load (1, 5, 15 min): {load1}, {load5}, {load15}")
+        logging.info(f"CPU load: {load1}, {load5}, {load15}")
+    except Exception as e:
+        print(f"Load check failed: {e}")
+
 #Flags and arguments
 def parse_arguments():
     parser = argparse.ArgumentParser(description="System & Network monitoring script")
@@ -80,6 +103,8 @@ def main():
     print(f"OS: {platform.system()} {platform.release()}")
     #Calls the network funktion to get ip's
     get_network_info()
+    #Calls the system info function for cpu/storage info
+    get_system_info()
     print("--------------------------------")
 
     logging.info("System checks passed.")
