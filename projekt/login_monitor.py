@@ -7,6 +7,7 @@ import logging
 import socket
 import requests
 import shutil
+import subprocess
 from datetime import datetime
 
 # Current version
@@ -51,11 +52,25 @@ def get_network_info():
             public_ip = response.text
             print(f"Public IP: {public_ip}")
             logging.info(f"Public IP: {public_ip}")
-        else:
-            print(f"Could not get public IP - {e}.")
     except requests.RequestException as e:
         print(f"Offline or timeout: {e}")
         logging.warning(f"Could not fetch Public IP {e}")
+
+#Checks for listening TCP and UDP ports, then writes out the first 6
+    try:
+        print("\n[Active ports]")
+        result = subprocess.check_output(["ss", "-tuln"], text=True)
+        lines = result.splitlines()
+        for line in lines[:6:]:
+         print(line)
+         logging.info(f"Active port {line}")
+
+        if len(lines) > 6:
+         print(f"...(and {len(lines)-6} more lines)")
+         logging.info(f"...(and {len(lines)-6} more lines)")
+    except Exception as e:
+        print("Could not get ports: {e}")
+        logging.error(f"Port scan error: {e}")
 
 #Gets storage and cpu load info
 def get_system_info():
@@ -78,6 +93,17 @@ def get_system_info():
         logging.info(f"CPU load: {load1}, {load5}, {load15}")
     except Exception as e:
         print(f"Load check failed: {e}")
+
+#Checks RAM usage
+    try:
+        result = subprocess.check_output(["free", "-h"], text=True)
+        lines = result.splitlines()
+        for line in lines:
+         if "Mem:" in line:
+          print(f"RAM usage: {line}")
+          logging.info(f"RAM usage: {line.strip()}")
+    except Exception as e:
+        print(f"RAM check failed: {e}")
 
 #Flags and arguments
 def parse_arguments():
