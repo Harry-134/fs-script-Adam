@@ -11,7 +11,7 @@ import subprocess
 from datetime import datetime
 
 # Current version
-VERSION = "1.0.0"
+VERSION = "1.0.0 - By Adam"
 
 LOG_FILE = "system_monitor.log"
 
@@ -111,6 +111,7 @@ def parse_arguments():
     parser.add_argument("-v", "--version", action="version", version=f"LoginMonitor v{VERSION}")
     return parser.parse_args()
 
+#Checks if you have root priviledges
 def check_priviledges():
 
     try:
@@ -148,6 +149,7 @@ def main():
     get_network_info()
     #Calls the system info function for cpu/storage info
     get_system_info()
+    #Calls the priviledge check function
     check_priviledges()
 
     print("--------------------------------")
