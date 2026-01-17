@@ -144,7 +144,7 @@ def main():
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"\n--- Login Monitor Started ---")
     print(f"User: {user}")
-    print(f"Hostname: {hostname}") #harryatition
+    print(f"Hostname: {hostname}") #harry adition
     print(f"Time: {current_time}")
     print(f"OS: {platform.system()} {platform.release()}")
     #Calls the network funktion to get ip's
