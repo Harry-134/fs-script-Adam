@@ -137,12 +137,14 @@ def main():
     args = parse_arguments()
 
     user = os.getenv('USER') or "Unknown"
+    hostname = platform.node() or "Unknown" #harry adition
 
     logging.info(f"Script started by {user}")
 
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"\n--- Login Monitor Started ---")
     print(f"User: {user}")
+    print(f"Hostname: {hostname}") #harryatition
     print(f"Time: {current_time}")
     print(f"OS: {platform.system()} {platform.release()}")
     #Calls the network funktion to get ip's
